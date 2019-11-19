@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="Mobile subscriptions made easy" />
+	<meta name="description" content="Mobile subscriptions made easy" />
+	<title>MobiMatter | Mobile subscriptions made easy</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+
+	<!-- favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+	<link rel="manifest" href="favicons/manifest.json">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css" />
+	<!-- Default theme -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css" />
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css" />
+	<!-- Bootstrap theme -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	 	 	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		https://firebase.google.com/docs/web/setup#available-libraries -->
+
+	<script>
+
+	let faqs = [
+    {
+      "Category": "About MobiMatter",
+      "FAQs": [
+        {
+          "question": "What is MobiMatter?",
+          "answer": "MobiMatter is an online re-seller and distributor of mobile telecom services. We help our users to discover, compare and purchase the best mobile offers by our partner mobile telecom operators from around the world. "
+        },
+        {
+          "question": "What services does MobiMatter offer? ",
+          "answer": "Using Mobimatter you can:<br><ul><li>Discover and buy the latest mobile offers and promotions to use at home or while travelling abroad</li><li>Purchase new connections from our partner mobile operators</li><li>Top-up the prepaid balance for local and international mobile lines</li></ul>"
+        },
+        {
+            "question": "Do you offer B2B services?",
+            "answer": "Yes, we do. Please write us at info@mobimatter.com and tell us about your needs, we are looking forward to hearing from you!"
+        }
+      ]
+    },
+    {
+      "Category": "About eSIMs",
+      "FAQs": [
+        {
+          "question": "What is eSIM?",
+          "answer": "An eSIM contains carrier and network subscription information, just like a normal SIM card that is inserted in your phone. However, instead of coming in the form of physical chip, it is downloaded directly into your phone."
+        },
+        {
+          "question": "Can I use eSIMs with my smartphone?",
+          "answer": "Currently the following smartphones support the eSIM functionality:\n<ul><li>iOS devices: iPhone models: 11, 11 Pro, 11 Pro Max, XS, XS Max and XR</li><li>Android devices: Pixel 4, Pixel 4 XL, Pixel 3A, Pixel 3A XL, Pixel 3 and Pixel 3 XL</li></ul>Please also note that iPhones sold in China currently do not support eSIM.\n\nSmartphones purchased from network operators on contract are sometimes carrier locked. These need to be unlocked in order to work with physical SIMs and eSIMs of other carriers.\n If in doubt, we recommend checking with your carrier and/or device manufacturer to see if eSIMs can be used with your smartphone."
+        },
+        {
+            "question": "What are the benefits of eSIM?",
+            "answer": "Use two connections on the same phone:<li>eSIM finally brings the dual SIM convenience to iPhone! By having two connections simultaneously active, you can <ul> <li>Receive calls and SMSes on both,</li><li>Choose which one you would like to use for phone calls</li><li>Choose which one you would like to use for mobile data connectivity</li></ul> </li>Enjoy instant activation:<li>You no longer have to visit an operator store to get a SIM, nor you have to wait to have it shipped to you. You can download and install the eSIM profiles immediately after purchase. </li>Increase security and fraud protection:<br><li>You no longer have to fiddle with your phone’s SIM slot to remove and insert SIMs; thereby exposing yourself to the potential risks of these being damaged, lost or stolen.</li>" 
+        },
+        {
+            "question": "Is there a disadvantage to using eSIM?",
+            "answer": "In our opinion, the one and only disadvantage of eSIM is that once it is installed on a smartphone, you can’t simply pull it out and plug it into another phone.<br><br>So, if you want to use a new phone, either because you accidentally damaged your existing one or you just want to upgrade to the latest model, you must contact your network operator to restore your connectivity.<br><br>For this reason, we recommend using physical SIM for your primary line, and use eSIMs for secondary and travel connections."
+        },
+        {
+            "question": "What is the best use case for eSIMs?",
+            "answer": "Travelling abroad! eSIM technology is ideal to make your travel connectivity easier and more convenient<br><ul> <li>Browse the options available on MobiMatter app and choose the one that best suits your need</li><li>Purchase and install the eSIM from the convenience of your home</li><li>Get connected as soon as you land and avoid wasting time, filling forms and dealing with language barriers when you try to buy local SIM cards at your destination</li><li>Use low-cost data connectivity of your travel eSIM while still being able to receive calls and SMSes (especially the ones your bank sends to you!) on your primary line.&nbsp;</li></ul>"
+        },
+        {
+            "question": "Can I install multiple eSIMs on my phone?",
+            "answer": "Yes, you can. You can store several eSIM profiles in your phone, but you need to choose only one that will be active along with your primary physical SIM. So, the dual SIM functionality means having 1: Your primary physical SIM, and 2: One of your stored eSIM profiles active at the same time. "
+        },
+        {
+            "question": "Can I delete eSIMs from my phone?",
+            "answer": "Yes, you can. Some of the travel eSIMs offered by our partner operators are designed for one-time disposable usage and can’t be used once their validity expires or their data allowance is fully consumed.<br><br>We recommend deleting such eSIM profiles at the end of your trip and buying new ones whenever you need travel connectivity again. "
+        },
+        {
+            "question": "How do I install and activate an eSIM?",
+            "answer":"Despite being very similar, some details in the eSIM activation process may vary from operator to operator. <br>Whenever you purchase an eSIM from us, you will get the exact activation steps you need to follow. These will be sent to you via email as well accessible anytime in your app purchase history.<br><br>Moreover, to fully familiarize yourself with your phone’s dual SIM and eSIM capabilities, we advise you to consult the online user guides of your phone manufacturer. "
+        },
+        {
+            "question": "What is a QR code?",
+            "answer": "A QR code is simply a representation of a download link pus activation code for your eSIM profile. It is easier to scan a QR code than typing a long string of text, but if for some reason you are unable to scan the QR code, you will have the option to activate your eSIM by entering the required information manually.<br><br>Please note that QR codes can be used only once. Once a QR code is scanned and an eSIM profile installed, in cannot be used to install the same eSIM again, whether it is on the same or another device. "
+        },
+        {
+            "question": "How do I scan the QR code with the same device?",
+            "answer": "You must open the QR code on another device for your phone to be able to scan it. For this, you can:<ul> <li>Open your email on another device and scan the QR code from there</li><li>Take a screenshot of your QR code and send it to another phone that you can then scan</li><li>Take a photo of your QR code with another device, etc.</li></ul>"
+        }
+      ]
+    },
+
+    {
+        "Category": "Orders Payment and Delivery",
+        "FAQs": [
+        {
+            "question": "How do I receive my purchases?",
+            "answer": "<ul> <li>Top-Up Recharges and package/plan activations on existing lines:&nbsp;</li></ul><p>There is a real-time connectivity between MobiMatter and operator systems. Your purchases will be immediately reflected on your chosen line.<br></p><ul> <li>New eSIM subscriptions:&nbsp;</li></ul>The eSIM profile and activation details will be immediately revealed to you upon purchasing an eSIM from one of our partner operators. The same will be also sent via e-mail and stored in your app purchase history.<br><ul> <li>New physical SIM subscriptions:</li></ul>Shipping and delivery information will be displayed to you during the check-out process, which you will need to confirm prior to payment. Your SIMs will be shipped and delivered directly by the operator or its delivery agent. You will be able to keep track of the status of your order through MobiMatter.&nbsp;"
+        },
+        {
+            "question": "What information do I need to provide to have a SIM/eSIM activated?",
+            "answer":"As MobiMatter we only need to know your email address, and a contact number in order to be able to deliver to you your order summary, payment details, and reach you in case a follow up is required. <br><br>Our partner telecom operators from around the world have different requirements according to the relevant regulations of their jurisdictions. Such information may include physical address, passport or ID copy, etc. MobiMatter will collect this information on behalf of its partner operators and strictly in accordance with their instructions. MobiMatter will not use such information for any purpose other than to transmit it to the relevant telecom operator. "
+        }
+    ]
+    },
+    {
+        "Category": "Troubleshooting",
+        "FAQs": [
+        {
+            "question": "I did not receive the e-mail with my eSIM QR code?",
+            "answer": "Please check your spam folder. Also, the eSIM profile details and the QR codes can be found in your app transaction history. <br><br>Please contact us at support@mobimatter.com with your order reference number if you wish us to resend you the eSIM QR code. "
+        }, 
+        {
+            "question": "My physical SIM shipment did not arrive",
+            "answer": "Please send us an email at support@mobimatter.com with your order reference number and we will help you track this with the relevant operator."
+        },
+
+        {
+            "question": "How do I track how much data I have used?",
+            "answer": "For the supported operators, you can track your usage from ‘My Connections’ section of the app. Where this functionality is not available, please check your data usage directly from your phone’s settings menu. "   
+        },
+        {
+            "question": "I am unable to use tethering (mobile hotspot) with my data eSIM.",
+            "answer": "Please ensure that the APN settings are entered correctly. You can find these in your order summary. \nPlease note that unless explicitly mentioned in the product terms and conditions, we cannot guarantee that tethering functionality is supported by our partner operator. "
+        },
+
+        {
+            "question": "I am unable to use data on my eSIM.",
+            "answer": "Please ensure that: <br><ul> <li>The correct eSIM is configured for mobile data access in your phone settings</li><li>Data roaming is enabled</li><li>APN settings are correctly entered (you can find the APN in your order summary)</li><li>Reboot your device</li></ul><br><br>If you are still facing trouble please contact us at support@mobimatter.com with your order reference number. "
+        }
+
+    ]
+    }
+  ]
+	</script>
+</head>
+
+<body class="bg-light">
+	<main id="main" role="main">
+		<section class="faq_banner text-center bg-primary py-4 overflow-hidden">
+			<div class="container">
+				<figure><img src="images/faq-header.png" alt="faqs"></figure>
+			</div>
+		</section>
+		<section class="faqs text-body bg-light py-3 py-md-5">
+			<div class="container" id="myAccordion">					
+			</div>
+		</section>
+	</main>
+
+
+	<script src="js/jquery-v3.4.0.js" type="text/javascript"></script>
+	<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script src="js/lozad.js"></script>
+	<!-- JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+	<script>
+		var html = '';
+		$.each(faqs, function( key, value ){
+			let cat= value["Category"];
+			let Category=value["Category"].replace(/ /g, '');					
+			html = '<h2 class="font-weight-bold h4 mb-4 category-opner collapsed" data-toggle="collapse" data-target="#'+Category+'-accordion" aria-expanded="false" aria-controls="'+Category+'-accordion">'+ cat	+'</h2>'
+			let i=1;
+			$.each(value['FAQs'], function( key, value ){				
+				html = html + '<div class="faqs-accordion mb-4 collapse" id="'+Category+'-accordion"><div class="panel"><button class="btn btn-link text-decoration-none btn-opner collapsed"type="button" data-toggle="collapse" data-target="#faq_'+Category+'_colapse'+i+'" aria-expanded="true"aria-controls="faq_'+Category+'_colapse'+i+'">'+value['question']+'</button><div id="faq_'+Category+'_colapse'+i+'" class="collapse" data-parent="#'+Category+'-accordion"><div class="text"><p>'+value['answer']+'</p></div></div></div></div>'
+				i++;
+			});
+			$("#myAccordion").append(html);
+		});
+
+		const observer = lozad();
+		observer.observe();
+
+		function validateEmail(email) {
+			var re = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+			return re.test(email);
+		}
+		function sendEmail() {
+
+			var name = $('#nme').val();
+			var email = $('#email').val();
+			var tel = $('#tel').val();
+			var org = $('#org').val();
+			var txtArea = $('#txtArea').val();
+			if (name == "" || name == null) {
+				$('#nme').focus();
+				alertify.alert("Name Required").setHeader('MobiMatter');
+			}
+			else if (email == "" || email == null) {
+				$('#email').focus();
+				alertify.alert("Email Required").setHeader('MobiMatter');
+			}
+			else if (!validateEmail(email)) {
+				$('#email').focus();
+				alertify.alert("Invalid Email").setHeader('MobiMatter');
+			}
+			else if (txtArea == "" || txtArea == null) {
+				$('#txtArea').focus();
+				alertify.alert("Message Required").setHeader('MobiMatter');
+			}
+			else {
+				Email.send({
+					Host: "smtp25.elasticemail.com",
+					Username: "admin@mobimatter.com",
+					Password: "a0358c1e-726c-4c60-9070-839363294637",
+					To: "wim@mobimatter.com,ibrahim@mobimatter.com,mustafa@glowfishlabs.com",
+					From: "admin@mobimatter.com",
+					Subject: "Inquiry email from " + email,
+					Body: '<html><head><head><body><div><strong>Name:</strong> ' + name + '</div><div><strong>Phone:</strong> ' + tel + '</div><div><strong>Organization: </strong>' + org + '</div><div><strong>Message:</strong>' + txtArea + '</div></body></html>'
+				}).then(
+					message => alertify.alert("Thank you for your interest! We have received your inquiry and will get in touch shortly").setHeader('MobiMatter')//location.reload()
+				);
+				//
+				$('#nme').val('');
+				$('#email').val('');
+				$('#tel').val('');
+				$('#org').val('');
+				$('#txtArea').val('');
+			}
+		}
+	</script>
+</body>
+
+</html>

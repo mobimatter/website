@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://rakbankpay.gateway.mastercard.com/checkout/version/53/checkout.js"               
+            data-beforeRedirect="Checkout.saveFormFields"
+            data-afterRedirect="Checkout.restoreFormFields"
+            data-cancel="https://mobimatter.com/cancel.html">               
+        </script>
+
+        <script type="text/javascript">
+
+            // get params  
+            var urlParams = new URLSearchParams(window.location.search);
+            var sessionId = urlParams.get('sessionId');
+
+            Checkout.configure({
+                session: { 
+                    id: sessionId
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <script>
+                window.onload = function() {
+                    Checkout.showPaymentPage();
+                };
+        </script>
+    </body>
+</html>
