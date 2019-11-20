@@ -52,9 +52,9 @@ body {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #fff;
+	color: var(--dark-color);
 	text-align: left;
-	background-color: #07141D;
+	background-color: var(--light-color);
 }
 [tabindex="-1"]:focus {
 	outline: 0 !important;
@@ -122,12 +122,12 @@ sup {
 	top: -.5em;
 }
 a {
-	color: #fff;
+	color: var(--dark-color);
 	text-decoration: none;
 	background-color: transparent;
 }
 a:hover {
-	color: #00A1ED;
+	color: var(--primary-color);
 	text-decoration: underline;
 }
 a:not([href]):not([tabindex]) {
@@ -2020,26 +2020,26 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 .btn-primary {
 	color: #fff;
-	background-color: #00AEEF;
-	border-color: #00AEEF;
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 .btn-primary:hover {
-	color: #00AEEF;
+	color: var(--primary-color);
 	background-color: #fff;
-	border-color: #00AEEF;
+	border-color: var(--primary-color);
 }
 .btn-primary:focus, .btn-primary.focus {
 	box-shadow: 0 0 0 0.2rem rgba(65, 119, 228, 0.5);
 }
 .btn-primary.disabled, .btn-primary:disabled {
 	color: #fff;
-	background-color: #69f;
-	border-color: #69f;
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
 	color: #fff;
-	background-color: #385a9f;
-	border-color: #385a9f;
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
 	box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
@@ -2922,19 +2922,19 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 .custom-control-input:checked ~ .custom-control-label::before {
 	color: #fff;
-	border-color: #007bff;
-	background-color: #007bff;
+	border-color: var(--primary-color);
+	background-color: var(--primary-color);
 }
 .custom-control-input:focus ~ .custom-control-label::before {
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-	border-color: #80bdff;
+	border-color: var(--primary-color);
 }
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
 	color: #fff;
-	background-color: #b3d7ff;
-	border-color: #b3d7ff;
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 .custom-control-input:disabled ~ .custom-control-label {
 	color: #6c757d;

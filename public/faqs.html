@@ -143,7 +143,7 @@
 	</script>
 </head>
 
-<body class="bg-light">
+<body>
 	<main id="main" role="main">
 		<section class="faq_banner text-center bg-primary py-4 overflow-hidden">
 			<div class="container">
@@ -168,7 +168,7 @@
 		$.each(faqs, function( key, value ){
 			let cat= value["Category"];
 			let Category=value["Category"].replace(/ /g, '');					
-			html = '<h2 class="font-weight-bold h4 mb-4 category-opner collapsed" data-toggle="collapse" data-target="#'+Category+'-accordion" aria-expanded="false" aria-controls="'+Category+'-accordion">'+ cat	+'</h2>'
+			html = '<h2 class="font-weight-bold h5 mb-4 category-opner collapsed" data-toggle="collapse" data-target="#'+Category+'-accordion" aria-expanded="false" aria-controls="'+Category+'-accordion">'+ cat	+'</h2>'
 			let i=1;
 			$.each(value['FAQs'], function( key, value ){				
 				html = html + '<div class="faqs-accordion mb-4 collapse" id="'+Category+'-accordion"><div class="panel"><button class="btn btn-link text-decoration-none btn-opner collapsed"type="button" data-toggle="collapse" data-target="#faq_'+Category+'_colapse'+i+'" aria-expanded="true"aria-controls="faq_'+Category+'_colapse'+i+'">'+value['question']+'</button><div id="faq_'+Category+'_colapse'+i+'" class="collapse" data-parent="#'+Category+'-accordion"><div class="text"><p>'+value['answer']+'</p></div></div></div></div>'
