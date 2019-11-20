@@ -23,7 +23,7 @@
         <section class="sect-payment">
             <div class="container">
                 <form id="simplify-payment-form" class="py-4" action="" method="POST">
-                    <ul class="form-error-holder rounded">
+                    <ul class="form-error-holder rounded" hidden>
                         <li>Please provide a valid Card Number.</li>
                         <li>Please provide a valid Name On Card.</li>
                         <li>Please provide a valid Expiry Date.</li>
@@ -70,6 +70,7 @@
     <script type="text/javascript">
         function simplifyResponseHandler(data) {
             var $paymentForm = $("#simplify-payment-form");
+            
             // Remove all previous errors
             $(".error").remove();
             // Check for errors
@@ -93,17 +94,20 @@
                 var token = data["id"];
                 // Insert the token into the form so it gets submitted to the server
                 $paymentForm.append("<input type='hidden' name='simplifyToken' value='" + token + "' />");
+                $("#process-payment-btn").removeAttr("disabled");
                 // Submit the form to the server
-                $paymentForm.get(0).submit();
+                //$paymentForm.get(0).submit();
+                alert(JSON.stringify(data));
             }
         }
         $(document).ready(function() {
-            $("#simplify-payment-form").on("submit", function() {
+            $("#simplify-payment-form").on("submit", function(event) {
+                event.preventDefault();
                 // Disable the submit button
                 $("#process-payment-btn").attr("disabled", "disabled");
                 // Generate a card token & handle the response
                 SimplifyCommerce.generateToken({
-                    key: "lvpb_ODk5NGFlNmYtZmJiMC00NzcwLTgwMzMtZDMzMDc2NDY0NDll",
+                    key: "sbpb_YWY5NzhlOGEtOWY0Zi00ODA0LWJjMzYtZjc3OGY1NGJmZjM5",
                     card: {
                         number: $("#cc-number").val().replace(/\s/g, ''),
                         cvc: $("#cc-cvc").val(),
