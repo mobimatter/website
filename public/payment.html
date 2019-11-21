@@ -23,7 +23,7 @@
         <section class="sect-payment">
             <div class="container">
                 <form id="simplify-payment-form" class="py-4" action="" method="POST">
-                    <ul class="form-error-holder rounded" hidden>
+                    <ul class="form-error-holder rounded">
                         <li>Please provide a valid Card Number.</li>
                         <li>Please provide a valid Name On Card.</li>
                         <li>Please provide a valid Expiry Date.</li>
@@ -37,24 +37,24 @@
                         <div class="invalid-feedback">Please provide a valid Card Number.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="cc-name">Cardholder Name</label>
-                        <input class="form-control" id="cc-name" type="text" maxlength="65" autocomplete="off" value="" onkeydown="return /[A-Z\s]/i.test(event.key)" style="text-transform:uppercase" required >
-                        <div class="invalid-feedback">Please provide a valid Cardholder Name.</div>
+                        <label for="cc-cvc">Name On Card</label>
+                        <input class="form-control" id="cc-cvc" type="text" maxlength="4" autocomplete="off" value="" required>
+                        <div class="invalid-feedback">Please provide a valid Name On Card.</div>
                     </div>
                     <div class="form-row">
                         <div class="col-6 mb-3">
-                            <label for="cc-exp">Expiry Date</label>
-                            <input type="text" class="form-control" id="cc-exp" name="cc-exp" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/yy" data-inputmask-placeholder="MM/YY" placeholder="MM/YY" required>
+                            <label for="datetime">Expiry Date</label>
+                            <input type="text" class="form-control" id="datetime" name="datetime" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/yy" data-inputmask-placeholder="MM/YY" placeholder="MM/YY" required>
                             <div class="invalid-feedback">Please provide a valid Expiry Date.</div>
                         </div>
                         <div class="col-6 mb-3">
-                            <label for="#cc-cvc">CVV</label>
-                            <input type="text" class="form-control" id="#cc-cvc" name="#cc-cvc" placeholder="999" data-inputmask="'mask': '999'" required>
+                            <label for="cvv-number">CVV</label>
+                            <input type="text" class="form-control" id="cvv-number" name="cvv-number" placeholder="9999" data-inputmask="'mask': '9999'" required>
                             <div class="invalid-feedback">Please provide a valid CVV.</div>
                         </div>
                     </div>
                     <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" required>
                         <label class="custom-control-label" for="customCheck1">Securely save this card for future purchases</label>
                     </div>
                     <button class="btn btn-primary btn-block py-2" id="process-payment-btn" type="submit">Pay Now</button>
@@ -70,7 +70,6 @@
     <script type="text/javascript">
         function simplifyResponseHandler(data) {
             var $paymentForm = $("#simplify-payment-form");
-            
             // Remove all previous errors
             $(".error").remove();
             // Check for errors
@@ -94,26 +93,22 @@
                 var token = data["id"];
                 // Insert the token into the form so it gets submitted to the server
                 $paymentForm.append("<input type='hidden' name='simplifyToken' value='" + token + "' />");
-                $("#process-payment-btn").removeAttr("disabled");
                 // Submit the form to the server
-                //$paymentForm.get(0).submit();
-                alert(JSON.stringify(data));
+                $paymentForm.get(0).submit();
             }
         }
         $(document).ready(function() {
-            $("#simplify-payment-form").on("submit", function(event) {
-                event.preventDefault();
+            $("#simplify-payment-form").on("submit", function() {
                 // Disable the submit button
                 $("#process-payment-btn").attr("disabled", "disabled");
                 // Generate a card token & handle the response
                 SimplifyCommerce.generateToken({
-                    key: "sbpb_YWY5NzhlOGEtOWY0Zi00ODA0LWJjMzYtZjc3OGY1NGJmZjM5",
+                    key: "lvpb_ODk5NGFlNmYtZmJiMC00NzcwLTgwMzMtZDMzMDc2NDY0NDll",
                     card: {
-                        number: $("#cc-number").val().replace(/\s/g, ''),
+                        number: $("#cc-number").val(),
                         cvc: $("#cc-cvc").val(),
-                        expMonth: $("#cc-exp").val().substring(0, 2),
-                        expYear: $("#cc-exp").val().substring(3,5),
-                        name : $("#cc-name").val(),
+                        expMonth: $("#cc-exp-month").val(),
+                        expYear: $("#cc-exp-year").val()
                     }
                 }, simplifyResponseHandler);
                 // Prevent the form from submitting
